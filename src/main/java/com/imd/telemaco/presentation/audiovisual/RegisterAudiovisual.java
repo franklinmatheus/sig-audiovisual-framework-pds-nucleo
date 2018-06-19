@@ -25,17 +25,13 @@ public abstract class RegisterAudiovisual extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private AudiovisualServices services;
+    protected AudiovisualServices services;
     private Audiovisual audiovisual;
 
-    private RegisterAudiovisual(AudiovisualServices audiovisualServices, Audiovisual audiovisual) {
-        this.services = audiovisualServices;
-        this.audiovisual = audiovisual;
-    }
+    @Override
+    public abstract void init();
 
-    public abstract void initialize();
-
-    public abstract Audiovisual setAudiovisualValues(HttpServletRequest request);
+    protected abstract Audiovisual setAudiovisualValues(HttpServletRequest request);
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

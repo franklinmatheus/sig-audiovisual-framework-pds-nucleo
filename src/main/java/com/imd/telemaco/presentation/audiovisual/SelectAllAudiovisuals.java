@@ -8,7 +8,6 @@ package com.imd.telemaco.presentation.audiovisual;
 import com.imd.telemaco.business.AudiovisualServices;
 import com.imd.telemaco.business.exception.CloseConnectionException;
 import com.imd.telemaco.business.exception.DatabaseException;
-import com.imd.telemaco.data.AudiovisualDAO;
 import com.imd.telemaco.entity.Audiovisual;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,13 +26,10 @@ public abstract class SelectAllAudiovisuals extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private AudiovisualServices services;
+    protected AudiovisualServices services;
 
-    private SelectAllAudiovisuals(AudiovisualServices audiovisualServices) {
-        this.services = audiovisualServices;
-    }
-
-    public abstract void initialize();
+    @Override
+    public abstract void init();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

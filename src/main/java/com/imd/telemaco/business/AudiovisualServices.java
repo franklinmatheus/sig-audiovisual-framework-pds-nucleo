@@ -28,10 +28,6 @@ public abstract class AudiovisualServices {
      */
     private AudiovisualDAO audiovisualDAO;
 
-    private AudiovisualServices(AudiovisualDAO audiovisualDAO) {
-        this.audiovisualDAO = audiovisualDAO;
-    }
-
     public abstract void initialize();
 
     public AudiovisualDAO getAudiovisualDAO() {

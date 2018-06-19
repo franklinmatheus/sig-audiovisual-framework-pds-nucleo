@@ -33,13 +33,10 @@ public abstract class SearchAudiovisual extends HttpServlet {
      */
     private static final long serialVersionUID = 1L;
 
-    private AudiovisualServices services;
+    protected AudiovisualServices services;
 
-    private SearchAudiovisual(AudiovisualServices audiovisualServices) {
-        this.services = audiovisualServices;
-    }
-
-    public abstract void initialize();
+    @Override
+    public abstract void init();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

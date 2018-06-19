@@ -26,20 +26,17 @@ import javax.servlet.http.HttpSession;
  * @author franklin
  * @author Valmir Correa (valmir.jr.correa@gmail.com)
  */
-public abstract class AddRating extends HttpServlet {
+public abstract class AddRatingAudiovisual extends HttpServlet {
 
     /**
      * Default
      */
     private static final long serialVersionUID = 1L;
 
-    private final AudiovisualServices services;
+    protected AudiovisualServices services;
 
-    private AddRating(AudiovisualServices audiovisualServices) {
-        this.services = audiovisualServices;
-    }
-
-    public abstract void initialize();
+    @Override
+    public abstract void init();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

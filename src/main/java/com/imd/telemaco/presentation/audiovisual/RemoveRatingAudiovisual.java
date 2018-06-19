@@ -25,20 +25,17 @@ import javax.servlet.http.HttpSession;
  *
  * @author franklin
  */
-public abstract class RemoveRating extends HttpServlet {
+public abstract class RemoveRatingAudiovisual extends HttpServlet {
 
     /**
      * Default
      */
     private static final long serialVersionUID = 1L;
 
-    private AudiovisualServices services;
+    protected AudiovisualServices services;
 
-    private RemoveRating(AudiovisualServices audiovisualServices) {
-        this.services = audiovisualServices;
-    }
-
-    public abstract void initialize();
+    @Override
+    public abstract void init();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
