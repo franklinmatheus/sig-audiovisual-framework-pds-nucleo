@@ -26,9 +26,7 @@ public abstract class AudiovisualServices {
     /**
      * Default Constructor
      */
-    private AudiovisualDAO audiovisualDAO;
-
-    public abstract void initialize();
+    protected AudiovisualDAO audiovisualDAO;
 
     public AudiovisualDAO getAudiovisualDAO() {
         return audiovisualDAO;
