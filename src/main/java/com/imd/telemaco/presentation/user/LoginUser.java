@@ -50,14 +50,17 @@ public class LoginUser extends HttpServlet {
         try {
             ValidateUserServices validate = new ValidateUserServices();
             User user = validate.login(request.getParameter("email"), request.getParameter("password"));
-            ArrayList<Audiovisual> AudiovisualsList = validate.getAudioVisualList(user.getId());
+            // TODO fixme
+            validate.initializeAudiovisualDAO(null);
+            ArrayList<Audiovisual> AudiovisualsList = validate.getAudioVisualList(user.getId(), "program");
 
             HttpSession session = request.getSession(true);
             session.setAttribute("logged", user);
-            session.setAttribute("AudiovisualsList", AudiovisualsList);
+            session.setAttribute("audiovisualList", AudiovisualsList);
             response.sendRedirect("Logged.jsp");
 
         } catch (DatabaseException | CloseConnectionException | UserNotExistsException e) {
+            System.out.println(e.getMessage());
             response.sendRedirect("Login.jsp");
         } finally {
             out.close();

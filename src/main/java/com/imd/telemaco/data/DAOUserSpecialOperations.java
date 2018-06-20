@@ -66,4 +66,6 @@ public interface DAOUserSpecialOperations extends DAO<User> {
      * @throws CloseConnectionException
      */
     public void deleteAudiovisual(int idUser, int idAudiovisual) throws DatabaseException, CloseConnectionException;
+    
+    public void defineAudiovisualTableName(String audiovisualTableName);
 }

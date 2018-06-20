@@ -18,8 +18,12 @@ import java.sql.Statement;
  */
 public abstract class AudiovisualDAO implements DAOAudioVisualSpecialOperations {
 
-    private Connection connection;
+    protected Connection connection;
 
+    protected AudiovisualDAO() throws DatabaseException {
+        this.connection = ConnectionFactory.getConnection();
+    }
+    
     /**
      * Method to know if already exists a connection with the db
      *
@@ -165,22 +169,22 @@ public abstract class AudiovisualDAO implements DAOAudioVisualSpecialOperations 
 
             Statement stm = connection.createStatement();
             ResultSet result = stm.executeQuery(sql);
-
+            
             while (result.next()) {
                 int id = result.getInt("id");
                 Audiovisual audioVisual = select(id);
                 audioVisuals.add(audioVisual);
             }
-
+            
             return audioVisuals;
         } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
         } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                throw new CloseConnectionException();
-            }
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                throw new CloseConnectionException();
+//            }
         }
     }
 }

@@ -18,8 +18,9 @@ import java.util.Date;
 public class UserDAO implements DAOUserSpecialOperations {
 
     private Connection connection;
+    private String audiovisualTableName = "";
     private static UserDAO userDAO = null;
-
+    
     public UserDAO() throws DatabaseException {
         this.connection = ConnectionFactory.getConnection();
     }
@@ -209,7 +210,7 @@ public class UserDAO implements DAOUserSpecialOperations {
             return user;
 
         } catch (SQLException e) {
-            throw new DatabaseException();
+            throw new DatabaseException(e.getMessage());
         } finally {
             try {
                 connection.close();
@@ -252,7 +253,7 @@ public class UserDAO implements DAOUserSpecialOperations {
             return user;
 
         } catch (SQLException e) {
-            throw new DatabaseException();
+            throw new DatabaseException(e.getMessage());
         } finally {
             try {
                 connection.close();
@@ -264,7 +265,7 @@ public class UserDAO implements DAOUserSpecialOperations {
 
     @Override
     public void insertAudiovisual(int idUser, int idAudiovisual) throws DatabaseException, CloseConnectionException {
-        String sql = "INSERT INTO telemaco.user_Audiovisual (idfkuser, idfkAudiovisual) VALUES (?,?)";
+        String sql = "INSERT INTO telemaco.user_" + this.audiovisualTableName + " (idfkuser, idfk" + this.audiovisualTableName + ") VALUES (?,?)";
         try {
             this.startsConnection();
 
@@ -285,7 +286,7 @@ public class UserDAO implements DAOUserSpecialOperations {
 
     @Override
     public ArrayList<Integer> selectAudiovisuals(int id) throws DatabaseException, CloseConnectionException {
-        String sql = "SELECT * FROM telemaco.user_Audiovisual WHERE idfkuser='" + id + "'";
+        String sql = "SELECT * FROM telemaco.user_" + this.audiovisualTableName + " WHERE idfkuser='" + id + "'";
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
         try {
@@ -295,14 +296,14 @@ public class UserDAO implements DAOUserSpecialOperations {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                int currentAudiovisualId = resultSet.getInt("idfkAudiovisual");
+                int currentAudiovisualId = resultSet.getInt("idfk" + this.audiovisualTableName);
                 ids.add(currentAudiovisualId);
             }
 
             return ids;
 
         } catch (SQLException e) {
-            throw new DatabaseException();
+            throw new DatabaseException(e.getMessage());
         } finally {
             try {
                 connection.close();
@@ -314,7 +315,7 @@ public class UserDAO implements DAOUserSpecialOperations {
 
     @Override
     public void deleteAudiovisual(int idUser, int idAudiovisual) throws DatabaseException, CloseConnectionException {
-        String sql = "DELETE FROM telemaco.user_Audiovisual WHERE idfkuser='" + idUser + "' AND idfkAudiovisual='" + idAudiovisual + "'";
+        String sql = "DELETE FROM telemaco.user_" + this.audiovisualTableName + " WHERE idfkuser='" + idUser + "' AND idfk" + this.audiovisualTableName + "='" + idAudiovisual + "'";
 
         try {
             this.startsConnection();
@@ -330,5 +331,9 @@ public class UserDAO implements DAOUserSpecialOperations {
                 throw new CloseConnectionException();
             }
         }
+    }
+
+    public void defineAudiovisualTableName(String audiovisualTableName) {
+        this.audiovisualTableName = audiovisualTableName;
     }
 }

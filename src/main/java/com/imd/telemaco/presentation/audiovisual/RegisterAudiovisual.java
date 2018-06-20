@@ -49,26 +49,18 @@ public abstract class RegisterAudiovisual extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+            init();
+
             audiovisual = setAudiovisualValues(request);
-            String name = request.getParameter("name");
-            String year = request.getParameter("year");
-            String status = request.getParameter("status");
-            String creator = request.getParameter("creator");
-            String classif = request.getParameter("classification");
-            String genre = request.getParameter("genre");
-            String synopsis = request.getParameter("synopsis");
-            String image = request.getParameter("image");
-            int yearInt = Integer.parseInt(year);
-            Classification classification = audiovisual.stringToClassif(classif);
 
             if ((audiovisual.getName() == null || audiovisual.getName().isEmpty())) {
-                response.sendRedirect("RegisterAudiovisual.jsp");
+                response.sendRedirect("RegisterFilm.jsp");
             } else {
                 HttpSession session = request.getSession();
                 session.getAttribute("logged");
 
                 try {
-                    services.validate(audiovisual);
+                    services.insert(audiovisual);
                 } catch (AudiovisualInvalidException | BusinessException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

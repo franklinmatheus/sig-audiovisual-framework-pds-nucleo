@@ -76,11 +76,9 @@ public abstract class AudiovisualServices {
         }
     }
 
-    public void validateInsert(Audiovisual audiovisual, User user)
+    public void insert(Audiovisual audiovisual)
             throws AudiovisualInvalidException, DatabaseException, CloseConnectionException, BusinessException {
 
-        //FIXME tirar os comentários da validação
-        this.validate(audiovisual, user);
         audiovisualDAO.insert(audiovisual);
     }
 

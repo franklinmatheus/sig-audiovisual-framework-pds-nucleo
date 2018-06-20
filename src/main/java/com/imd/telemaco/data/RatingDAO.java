@@ -53,7 +53,7 @@ public class RatingDAO implements DAORatingSpecialOperations {
 
     @Override
     public void insert(Rating rating) throws DatabaseException, CloseConnectionException {
-        String sql = "INSERT INTO telemaco.rating (date, stars, rating, idfkuser, idfkAudiovisual) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO telemaco.rating (date, stars, rating, idfkuser, idfkaudiovisual) VALUES (?, ?, ?, ?, ?)";
 
         try {
             this.startsConnection();
@@ -148,7 +148,7 @@ public class RatingDAO implements DAORatingSpecialOperations {
                 + "rating=?, "
                 + "stars=?, "
                 + "idfkuser=?, "
-                + "idfkAudiovisual=?, "
+                + "idfkaudiovisual=?, "
                 + "WHERE id=?";
         try {
             this.startsConnection();
@@ -177,7 +177,7 @@ public class RatingDAO implements DAORatingSpecialOperations {
 
     @Override
     public ArrayList<Rating> selectByAudiovisual(int idAudiovisual) throws DatabaseException, CloseConnectionException {
-        String sql = "SELECT * FROM telemaco.rating WHERE idfkAudiovisual='" + idAudiovisual + "'";
+        String sql = "SELECT * FROM telemaco.rating WHERE idfkaudiovisual='" + idAudiovisual + "'";
         ArrayList<Rating> ratings = new ArrayList<Rating>();
 
         try {

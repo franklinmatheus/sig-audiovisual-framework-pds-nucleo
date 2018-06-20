@@ -152,8 +152,9 @@ public class ValidateUserServices {
      * @throws DatabaseException
      * @throws CloseConnectionException
      */
-    public void addAudiovisualToList(int idUser, int idAudiovisual) throws DatabaseException, CloseConnectionException {
+    public void addAudiovisualToList(int idUser, int idAudiovisual, String name) throws DatabaseException, CloseConnectionException {
         DAOUserSpecialOperations dao = UserDAO.getInstance();
+        dao.defineAudiovisualTableName(name);
         dao.insertAudiovisual(idUser, idAudiovisual);
     }
 
@@ -165,8 +166,9 @@ public class ValidateUserServices {
      * @throws DatabaseException
      * @throws CloseConnectionException
      */
-    public void removeAudiovisualFromList(int idUser, int idAudiovisual) throws DatabaseException, CloseConnectionException {
+    public void removeAudiovisualFromList(int idUser, int idAudiovisual, String name) throws DatabaseException, CloseConnectionException {
         DAOUserSpecialOperations dao = UserDAO.getInstance();
+        dao.defineAudiovisualTableName(name);
         dao.deleteAudiovisual(idUser, idAudiovisual);
     }
 
@@ -178,8 +180,9 @@ public class ValidateUserServices {
      * @throws DatabaseException
      * @throws CloseConnectionException
      */
-    public ArrayList<Audiovisual> getAudioVisualList(int idUser) throws DatabaseException, CloseConnectionException {
+    public ArrayList<Audiovisual> getAudioVisualList(int idUser, String name) throws DatabaseException, CloseConnectionException {
         DAOUserSpecialOperations userDAO = UserDAO.getInstance();
+        userDAO.defineAudiovisualTableName(name);
         ArrayList<Audiovisual> audioVisualArray = new ArrayList<>();
         ArrayList<Integer> audioVisualIds = userDAO.selectAudiovisuals(idUser);
 

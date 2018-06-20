@@ -56,6 +56,7 @@ public abstract class AddRatingAudiovisual extends HttpServlet {
             String content = request.getParameter("content");
             int stars = Integer.parseInt(request.getParameter("rating"));
             Date date = new Date();
+            System.out.println(request.getParameter("idAudiovisual"));
             int idAudiovisual = Integer.parseInt(request.getParameter("idAudiovisual"));
             int idUser = Integer.parseInt(request.getParameter("idUser"));
             User user = validateUser.select(idUser);

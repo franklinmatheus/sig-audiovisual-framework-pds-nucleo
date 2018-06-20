@@ -123,49 +123,28 @@ public abstract class Audiovisual {
         return ratings;
     }
 
-    /**
-     * Change the value of the status
-     *
-     * @param status
-     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
 
-    /**
-     * Change the value of the synopsis
-     *
-     * @param synopsis
-     */
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
 
-    /**
-     * Change the value of the image
-     *
-     * @param image
-     */
     public void setImage(String image) {
         this.image = image;
     }
 
-    /**
-     * Change the value of the ratings
-     *
-     * @param ratings
-     */
-    public void setRatings(ArrayList<Rating> ratings) {
-        this.ratings = ratings;
+    public void setClassification(Classification classification) {
+        this.classification = classification;
     }
 
-    /**
-     * This method add a rating in the Ratings list of the Film
-     *
-     * @param rating
-     */
-    public void addRating(Rating rating) {
-        ratings.add(rating);
+    public void setRatings(ArrayList<Rating> ratings) {
+        this.ratings = ratings;
     }
 
     /**
@@ -229,5 +208,9 @@ public abstract class Audiovisual {
         }
 
         return classification;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

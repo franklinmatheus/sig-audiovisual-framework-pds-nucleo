@@ -47,14 +47,14 @@ public class AddAudiovisualToList extends HttpServlet {
             HttpSession session = request.getSession();
             int idAudiovisual = Integer.parseInt(request.getParameter("idAudiovisual"));
             int idUser = Integer.parseInt(request.getParameter("idUser"));
-
             ValidateUserServices validate = new ValidateUserServices();
-            validate.addAudiovisualToList(idUser, idAudiovisual);
+            validate.addAudiovisualToList(idUser, idAudiovisual, "program");
+            
+            validate.initializeAudiovisualDAO(null);
+            ArrayList<Audiovisual> AudiovisualsList = validate.getAudioVisualList(idUser, "program");
+            session.setAttribute("audiovisualList", AudiovisualsList);
 
-            ArrayList<Audiovisual> AudiovisualsList = validate.getAudioVisualList(idUser);
-            session.setAttribute("AudiovisualsList", AudiovisualsList);
-
-            response.sendRedirect("Audiovisual.jsp");
+            response.sendRedirect("Film.jsp");
         } catch (DatabaseException | CloseConnectionException e) {
             response.sendRedirect("Error.jsp");
         }

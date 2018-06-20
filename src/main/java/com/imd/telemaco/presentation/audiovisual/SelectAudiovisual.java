@@ -55,7 +55,7 @@ public abstract class SelectAudiovisual extends HttpServlet {
 
             session.setAttribute("audiovisual", Audiovisual);
             session.setAttribute("ratings", ratings);
-            response.sendRedirect("audiovisual.jsp");
+            response.sendRedirect("Film.jsp");
 
         } catch (DatabaseException | CloseConnectionException e) {
             response.sendRedirect("Error.jsp");

@@ -45,11 +45,13 @@ public abstract class SelectAllAudiovisuals extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
-                ArrayList<Audiovisual> Audiovisuals = services.getAudiovisualDAO().sellectAllAudioVisuals();
+                init();
+                
+                ArrayList<Audiovisual> audiovisuals = services.getAudiovisualDAO().sellectAllAudioVisuals();
                 HttpSession session = request.getSession(true);
-                session.setAttribute("Audiovisuals", Audiovisuals);
-
-                response.sendRedirect("Audiovisuals.jsp");
+                session.setAttribute("audiovisualList", audiovisuals);
+                
+                response.sendRedirect("Films.jsp");
             } catch (DatabaseException | CloseConnectionException e) {
                 e.printStackTrace();
                 response.sendRedirect("Error.jsp");

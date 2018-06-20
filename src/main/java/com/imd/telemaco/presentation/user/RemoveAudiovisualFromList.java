@@ -42,11 +42,11 @@ public class RemoveAudiovisualFromList extends HttpServlet {
         try {
             int idAudiovisual = Integer.parseInt(request.getParameter("idAudiovisual"));
             int idUser = Integer.parseInt(request.getParameter("idUser"));
-
+            
             ValidateUserServices validate = new ValidateUserServices();
-            validate.removeAudiovisualFromList(idUser, idAudiovisual);
-
-            ArrayList<Audiovisual> AudiovisualsList = validate.getAudioVisualList(idUser);
+            validate.removeAudiovisualFromList(idUser, idAudiovisual, "program");
+            System.out.println("oi");
+            ArrayList<Audiovisual> AudiovisualsList = validate.getAudioVisualList(idUser, "program");
 
             HttpSession session = request.getSession(true);
             session.setAttribute("audiovisualList", AudiovisualsList);
